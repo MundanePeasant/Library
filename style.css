@@ -2,15 +2,23 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: 'Playfair Display', serif;
 }
 
 :root {
     /* COLORS */
     /* FONT */
-    font-family: 'Playfair Display', serif;
+
     --font-title: 48px;
     --font-card: 14px;
     --font-form: 16px;
+}
+
+body {
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -20,6 +28,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 16px;
+}
+
+button, input[type='submit'] {
+    background-color: rgba(72, 0, 72, 0.795);
+    color: white;
+    font-size: var(--font-form);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
 }
 
 h1 {
@@ -30,6 +48,7 @@ h1 {
 .shelf {
     background-color: rgba(244, 244, 244, 0.63);
     display: grid;
+    flex: 1;
 }
 
 button:hover{
@@ -38,6 +57,25 @@ button:hover{
 
 .popup {
     display: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content{
+    background-color: white;
+    margin: 10%;
+    padding: 20px;
+    border: 2px solid rgba(244, 244, 244, 0.63);
+    border-radius: 5px;
+
 }
 
 .close:hover {

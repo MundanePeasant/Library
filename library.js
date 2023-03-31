@@ -32,7 +32,7 @@ const addButton = document.getElementById("add-book");
 const popup = document.getElementsByClassName("popup")[0];
 
 addButton.addEventListener("click", () => {
-    popup.style.display = "block";
+    popup.style.display = "flex";
 });
 
 const form = document.getElementById("form");
@@ -49,3 +49,9 @@ const close = document.getElementsByClassName("close")[0];
 close.addEventListener("click", () => {
     popup.style.display="none";
 });
+
+window.onclick = function(event) {
+    if (event.target == popup) {
+      popup.style.display = "none";
+    }
+  }
