@@ -6,9 +6,40 @@
 
 :root {
     /* COLORS */
-    /* FONT SIZE */
+    /* FONT */
+    font-family: 'Playfair Display', serif;
+    --font-title: 48px;
+    --font-card: 14px;
+    --font-form: 16px;
+}
+
+.header {
+    height: 150px;
+    background-color: lavender;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: var(--font-title);
+}
+
+.shelf {
+    background-color: rgba(244, 244, 244, 0.63);
+    display: grid;
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 .popup {
     display: none;
+}
+
+.close:hover {
+    cursor: pointer;
 }

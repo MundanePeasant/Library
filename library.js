@@ -43,3 +43,9 @@ form.addEventListener("submit", (e) => {
     //also need to put some validations on the form in html
     //send form data to addBookFromLibrary
 });
+
+const close = document.getElementsByClassName("close")[0];
+
+close.addEventListener("click", () => {
+    popup.style.display="none";
+});
