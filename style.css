@@ -21,6 +21,10 @@ body {
     flex-direction: column;
 }
 
+label {
+    margin-right: 8px;
+}
+
 .header {
     height: 150px;
     background-color: lavender;
@@ -75,7 +79,16 @@ button:hover{
     padding: 20px;
     border: 2px solid rgba(244, 244, 244, 0.63);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
 
+.form-container {
+    margin: 20px 0px;
+}
+
+.close{
+    margin-left: auto;
 }
 
 .close:hover {
