@@ -1,6 +1,6 @@
 let myLibrary = [];
 
-function  Book(title, author, pages, read = "off") {
+function  Book(title, author, pages, read = false) {
     //Book constructor
     this.title = title;
     this.author = author;
@@ -14,6 +14,12 @@ Book.prototype.toString = function () {
 
 Book.prototype.toggleRead = function () {
     //toggles read of a book
+    if(this.read === false){
+        this.read = true;
+    } else {
+        this.read = false;
+    }
+    console.log(this);
 }
 
 function addBookToLibrary(book){
@@ -86,12 +92,17 @@ function loadLibrary(library){
         checkbox.type = 'checkbox';
         checkbox.id = 'myCheckbox';
 
-        if(element['read']==='off'){
+        if(element['read']==='off' || element['read'] === false){
             checkbox.checked = false;
+            element['read'] = false;
         } else {
             checkbox.checked = true;
+            element['read'] = true;
         }
         
+        checkbox.addEventListener('click', () => {
+            element.toggleRead();
+        });
 
         const div2 = document.createElement('div');
         const label = document.createElement('label');
