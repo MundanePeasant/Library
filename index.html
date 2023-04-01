@@ -29,20 +29,20 @@
             <span class="close">&times;</span>
             <form action="" id="form">
                 <div class="form-container">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title">
+                    <label for="title">Title*:</label>
+                    <input type="text" name="title" id="title" required>
                 </div>
                 <div class="form-container">
-                    <label for="author">Author:</label>
-                    <input type="text" name="author" id="author">
+                    <label for="author">Author*:</label>
+                    <input type="text" name="author" id="author" required>
                 </div>
                 <div class="form-container">
                     <label for="pages">Number of Pages:</label>
-                    <input type="number" name="pages" id="pages">
+                    <input type="number" name="pages" id="pages" value="0">
                 </div>
                 <div class="form-container">
                     <label for="read">Read?</label>
-                    <input type="checkbox" name="read" id="read">
+                    <input type="checkbox" name="read" id="read" value="on">
                 </div>
                 <input type="submit" value="Add">
             </form>

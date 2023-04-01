@@ -1,6 +1,6 @@
 let myLibrary = [];
 
-function  Book(title, author, pages, read) {
+function  Book(title, author, pages, read = "off") {
     //Book constructor
     this.title = title;
     this.author = author;
@@ -8,9 +8,14 @@ function  Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(){
-    //construct new Book object and add it to the Library array
-    //Loop through library array and have all books displayed on page
+Book.prototype.toString = function () {
+    return `${this.title} by ${this.author}, which is ${this.pages} pages long. Have I read it? ${this.read}`;
+}
+
+function addBookToLibrary(book){
+    myLibrary.push(book);
+    loadLibrary(myLibrary);
+    console.log(myLibrary)
 }
 
 function removeBookFromLibrary(){
@@ -19,10 +24,64 @@ function removeBookFromLibrary(){
     //reload the Library
 }
 
-function loadLibrary(myLibrary){
+const shelf = document.getElementsByClassName('shelf')[0];
+
+function removeShelf(library){
+    //removes all books from the shelf
+    while(shelf.firstChild){
+        shelf.removeChild(shelf.firstChild);
+    }
+}
+
+function loadLibrary(library){
     //loop through myLirbary and add all books within it to the page
     //1. remove all existing books
     //2. load books from myLibrary array and insert the associated html
+    removeShelf(library);
+
+    library.forEach(element => {
+        const div = document.createElement('div');
+
+        const h4 = document.createElement('h4');
+        const title = document.createTextNode(element['title']);
+        h4.appendChild(title);
+        div.appendChild(h4);
+
+        const h5 = document.createElement('h5');
+        const author = document.createTextNode(element['author']);
+        h5.appendChild(author);
+        div.appendChild(h5);
+
+        const paragraph = document.createElement('p');
+        const pages = document.createTextNode(element['pages']);
+        paragraph.appendChild(pages);
+        div.appendChild(paragraph);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'myCheckbox';
+
+        if(element['read']==='off'){
+            checkbox.checked = false;
+        } else {
+            checkbox.checked = true;
+        }
+        
+
+        const div2 = document.createElement('div');
+        const label = document.createElement('label');
+        label.for = 'myCheckbox';
+        const readLabel = document.createTextNode('Read?');
+        label.appendChild(readLabel);
+        div2.appendChild(label);
+        div2.appendChild(checkbox);
+
+        div.appendChild(div2);
+
+        div.classList.add('book');
+        shelf.appendChild(div);
+    });
+
 }
 
 
@@ -39,8 +98,15 @@ const form = document.getElementById("form");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const formData = new FormData(form);
+    const entries = Array.from(formData.entries());
+    const formObjects = Object.fromEntries(entries);
+
+    const book = new Book(formObjects['title'],formObjects['author'],formObjects['pages'],formObjects['read']);
+    addBookToLibrary(book);
+
     popup.style.display="none";
-    //also need to put some validations on the form in html
     //send form data to addBookFromLibrary
 });
 

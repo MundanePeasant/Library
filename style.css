@@ -94,3 +94,12 @@ button:hover{
 .close:hover {
     cursor: pointer;
 }
+
+.book {
+    background-color: beige;
+    padding: 16px;
+    height: 200px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+}
