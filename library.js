@@ -12,16 +12,26 @@ Book.prototype.toString = function () {
     return `${this.title} by ${this.author}, which is ${this.pages} pages long. Have I read it? ${this.read}`;
 }
 
+Book.prototype.toggleRead = function () {
+    //toggles read of a book
+}
+
 function addBookToLibrary(book){
     myLibrary.push(book);
     loadLibrary(myLibrary);
     console.log(myLibrary)
 }
 
-function removeBookFromLibrary(){
+function removeBookFromLibrary(target){
     //retrieve the object reference (or something that references the book)
     //remove that book from the library array
     //reload the Library
+    const book = target.parentElement;
+    const index = book.dataset.id;
+
+    myLibrary.splice(index,1);
+    
+    loadLibrary(myLibrary);
 }
 
 const shelf = document.getElementsByClassName('shelf')[0];
@@ -39,8 +49,21 @@ function loadLibrary(library){
     //2. load books from myLibrary array and insert the associated html
     removeShelf(library);
 
+    let counter = 0;
+
     library.forEach(element => {
         const div = document.createElement('div');
+        div.dataset.id = counter;
+        counter++;
+
+        const img = document.createElement('img');
+        img.setAttribute('src','remove.svg');
+
+        img.addEventListener('click', event => {
+            removeBookFromLibrary(event.target);
+        });
+
+        div.appendChild(img);
 
         const h4 = document.createElement('h4');
         const title = document.createTextNode(element['title']);
@@ -52,10 +75,12 @@ function loadLibrary(library){
         h5.appendChild(author);
         div.appendChild(h5);
 
+        const div3 = document.createElement('div');
+
         const paragraph = document.createElement('p');
-        const pages = document.createTextNode(element['pages']);
+        const pages = document.createTextNode(`Pages: ${element['pages']}`);
         paragraph.appendChild(pages);
-        div.appendChild(paragraph);
+        div3.appendChild(paragraph);
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -76,7 +101,10 @@ function loadLibrary(library){
         div2.appendChild(label);
         div2.appendChild(checkbox);
 
-        div.appendChild(div2);
+        div3.appendChild(div2);
+        div3.classList.add('footer');
+
+        div.appendChild(div3);
 
         div.classList.add('book');
         shelf.appendChild(div);

@@ -52,7 +52,10 @@ h1 {
 .shelf {
     background-color: rgba(244, 244, 244, 0.63);
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
     flex: 1;
+    padding: 20px;
 }
 
 button:hover{
@@ -102,4 +105,35 @@ button:hover{
     width: 200px;
     border: none;
     border-radius: 5px;
+    box-shadow: 2px 3px rgba(72, 0, 72, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.book > * {
+    font-size: var(--font-form);
+}
+
+.book > h4 {
+    font-size: calc(var(--font-card)*1.5);
+}
+
+.book > h5 {
+    font-size: calc(var(--font-card)*1.2);
+}
+
+.book > img {
+    height: 20px;
+    width: 20px;
+    margin-left: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex: 1;
+    gap: 8px;
 }
